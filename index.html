@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Files</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-sm-12 text-center">
+      <h1 class="text-danger text-uppercase" style="margin-bottom: 50px;">Node.js Upload Files</h1>
+    </div>
+    <form action="fileupload" method="post" enctype="multipart/form-data">
+      <input type="file" name="filetoupload" id="filetoupload"><br>
+      <img id="imagePreview" src="" style="display: none; width: 100px;object-fit: cover;"><br>
+      <input type="submit">
+    </form>
+  </div>
+  <script>
+    const imageInput = document.getElementById('filetoupload');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageInput.addEventListener('change', function () {
+      const file = imageInput.files[0];
+      const reader = new FileReader();
+      document.getElementById("imagePreview").style.display = 'block';
+      reader.addEventListener('load', function () {
+        imagePreview.src = reader.result;
+      });
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+
+  </script>
+</body>
+
+
+</html>
