@@ -14,7 +14,15 @@ http
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir);
         }
-        var newpath = dir + files.filetoupload.originalFilename;
+        let time = new Date().getTime();
+        console.log(time);
+        let fileName = files.filetoupload.originalFilename.toString();
+
+        let names = fileName.split(".");
+        let newFileName = names[0] + time + "." + names[1];
+        console.log(newFileName);
+        var newpath = dir + newFileName;
+
         fs.copyFile(oldpath, newpath, (err) => {
           if (err) throw err;
           fs.unlink(oldpath, (err) => {
